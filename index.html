@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="vi" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unravel - Hồ sơ mật · Game phá án tiếng Việt</title>
+<meta name="description" content="Mở hồ sơ. Lần ra sự thật. Game phá án tiếng Việt, chơi miễn phí ngay trên trình duyệt, không cần tải app.">
+<meta property="og:title" content="Unravel - Hồ sơ mật">
+<meta property="og:description" content="Mở hồ sơ. Lần ra sự thật.">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Be+Vietnam+Pro:wght@400;500&display=swap">
+<style>
+:root{--bg:#080d0f;--ink:#ede6d6;--mute:#9aa4a1;--lamp:#e9b65c;--red:#c8322b;--kraft:#c7a46a}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Be Vietnam Pro",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,.k,.btn,.tag,.no{font-family:"Barlow Condensed",sans-serif}
+.wrap{width:min(1120px,100% - 40px);margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:54px;padding:0 30px;background:var(--lamp);color:#1a140a;font-weight:800;font-size:21px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 0 0 0 #e9b65c66;animation:pulse 2.4s ease-in-out infinite}
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .2s,box-shadow .25s,background .25s}
+.btn::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,#fff0,#fff9,#fff0);transform:skewX(-20deg);animation:shine 3.6s ease-in-out 2.6s infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
+.btn:hover{background:#f6cf86;transform:translateY(-3px);box-shadow:0 12px 30px -6px #e9b65caa,0 0 0 4px #e9b65c33;animation:none}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn svg{width:20px;height:20px;transition:transform .25s}
+.btn:hover svg{transform:translateX(6px)}
+@keyframes pulse{50%{box-shadow:0 0 0 10px #e9b65c00}}
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;overflow:hidden}
+.bgw{position:absolute;inset:-4%;animation:drift 30s ease-in-out infinite alternate}
+.bg,.lit{position:absolute;inset:0;background:url(img/hero2.jpg) 70% center/cover}
+.bg{filter:brightness(.55) saturate(.9)}
+.lit{filter:brightness(1.05) saturate(1.1) contrast(1.05);--mx:30%;--my:40%;-webkit-mask-image:radial-gradient(circle 240px at var(--mx) var(--my),#000 0,#0009 45%,#0000 100%);mask-image:radial-gradient(circle 240px at var(--mx) var(--my),#000 0,#0009 45%,#0000 100%)}
+.stamp{transition:translate .4s ease-out}
+@keyframes drift{to{transform:scale(1.08) translate(-1.5%,1%)}}
+.glow{position:absolute;left:38%;top:-30%;width:60vmax;height:60vmax;background:radial-gradient(circle,#e9b65c33,#e9b65c00 60%);animation:flicker 5s steps(1) infinite;pointer-events:none}
+@keyframes flicker{0%,100%{opacity:1}42%{opacity:.75}44%{opacity:1}71%{opacity:.85}72%{opacity:1}}
+.vig{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,13,15,.85) 0%,rgba(8,13,15,.35) 50%,rgba(8,13,15,.2) 75%,rgba(8,13,15,.6) 100%),linear-gradient(rgba(8,13,15,0) 55%,#080d0f)}
+canvas#rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+.top{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:22px 0}
+.top img{width:44px;height:44px}
+.top b{font:700 20px "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.top span{color:var(--mute);font:600 20px "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.hc{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:30px;padding-bottom:70px}
+.k{margin:0 0 20px;color:var(--lamp);font-weight:600;font-size:16px;letter-spacing:.24em;text-transform:uppercase}
+h1{margin:0 0 26px;font-weight:800;font-size:clamp(40px,6.4vw,90px);line-height:1.08;text-transform:uppercase;letter-spacing:.01em}
+h1 .l1{font-size:.56em;letter-spacing:.16em;line-height:1;margin-bottom:.22em;color:var(--ink)}
+h1 .l2{display:block;color:var(--red)}
+h1 .l1{display:block;animation:in .9s ease-out both}
+h1 .l2{animation:in .9s .5s ease-out both}
+@keyframes in{from{opacity:0;transform:translateY(24px);filter:blur(6px)}}
+.sub{margin:0 0 30px;max-width:520px;color:#d4cec0;font-size:18px;animation:in .9s .9s both}
+.cta{animation:in .9s 1.1s both;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.note span{display:block}
+.note{margin:0;padding-left:18px;border-left:2px solid #e9b65c66;color:#b9b3a6;font-size:14.5px;line-height:1.55}
+.facts{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--mute);font-size:15px;animation:in .9s 1.3s both}
+.facts i{font-style:normal;color:var(--lamp)}
+.stw{position:relative;display:grid;place-items:center}
+.stamp{width:clamp(170px,22vw,290px);transform:rotate(-9deg);opacity:.94;filter:drop-shadow(0 6px 14px #0008);animation:ink-in .25s ease-out 1.7s both}
+@keyframes ink-in{0%{opacity:0;transform:rotate(-9deg) scale(1.06)}30%{opacity:1}100%{opacity:.94;transform:rotate(-9deg) scale(1)}}
+.tool{position:absolute;left:50%;bottom:4%;width:78%;margin-left:-39%;z-index:3;pointer-events:none;filter:drop-shadow(0 30px 30px #000a);transform-origin:50% 100%;opacity:0;animation:press 1.7s cubic-bezier(.5,0,.6,1) .9s both}
+@keyframes press{0%{opacity:0;transform:translateY(-130%) rotate(-6deg) scale(1.15)}18%{opacity:1}47%{transform:translateY(-12%) rotate(-3deg) scale(1.04)}
+ 47.1%,52%{transform:translateY(0) scaleY(.94) scaleX(1.02)}60%{opacity:1;transform:translateY(-4%) scaleY(1)}78%,100%{opacity:0;transform:translateY(-140%) rotate(4deg) scale(1.08)}}
+.stw::before,.stw::after{content:"";position:absolute;inset:6%;border-radius:50%;pointer-events:none;opacity:0}
+.stw::before{border:3px solid #c8322b;animation:ring .7s ease-out 1.7s}
+.stw::after{background:radial-gradient(circle,#c8322b44 0,#c8322b22 40%,#c8322b00 70%);animation:ink .9s ease-out 1.7s}
+@keyframes ring{0%{opacity:.9;transform:scale(.9)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes ink{0%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+.hero.hit .hc,.hero.hit .bgw{animation:thud .38s cubic-bezier(.3,.7,.4,1)}
+.hero.hit .bgw{animation:thud .38s cubic-bezier(.3,.7,.4,1),drift 30s ease-in-out infinite alternate}
+@keyframes thud{0%{translate:0 0}15%{translate:-7px 9px}35%{translate:6px -5px}55%{translate:-4px 3px}75%{translate:2px -1px}100%{translate:0 0}}
+.flash{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(circle at 80% 50%,#fff2 0,#0000 50%);opacity:0;animation:fl .35s ease-out 1.7s}
+@keyframes fl{0%{opacity:1}100%{opacity:0}}
+.down{position:absolute;z-index:2;left:50%;bottom:22px;transform:translateX(-50%);color:var(--mute);text-decoration:none;font:600 14px "Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:4px}
+.down svg{width:20px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+
+/* QUIZ */
+.quiz,.how{padding:90px 0}
+.quiz{background:linear-gradient(#080d0f,#0d1214)}
+.quiz h2,.how h2{margin:0 0 8px;font-weight:800;font-size:clamp(38px,4.6vw,60px);text-transform:uppercase;line-height:1}
+.quiz .hint,.how .hint{margin:0 0 40px;color:var(--mute);max-width:720px}
+.clues{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-bottom:34px}
+.qgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.clue{position:relative;background:#f1ead9;color:#2a1f10;padding:28px 20px 20px;transform:rotate(var(--r));box-shadow:0 14px 30px #000a;display:flex;flex-direction:column;gap:8px}
+.clue .pin{position:absolute;top:-7px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff6a5c,#a51d14);box-shadow:0 3px 4px #0006}
+.clue small{font:700 13px "Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#7a2a1c}
+.clue b{font:700 21px/1.2 "Barlow Condensed",sans-serif}
+.clue em{margin-top:auto;font-size:13px;color:#6b5a3f}
+.sus{all:unset;box-sizing:border-box;position:relative;cursor:pointer;display:flex;flex-direction:column;gap:14px;padding:20px 20px 62px;background:#121a1d;border:1px solid #24313a;transition:transform .2s,border-color .2s,background .2s;overflow:hidden}
+.sus:hover,.sus:focus-visible{transform:translateY(-4px);border-color:#e9b65c88;background:#151f23}
+.sus .who{display:flex;align-items:center;gap:12px}
+.sus .who i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#24313a;font:800 20px "Barlow Condensed",sans-serif;font-style:normal;color:var(--lamp);flex:none}
+.sus .who b{display:block;font:700 20px/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.sus .who small{color:var(--mute);font-size:13px}
+.sus q{quotes:"“" "”";font-size:16px;line-height:1.5;color:#d9d3c5}
+.sus .lie{position:absolute;right:14px;bottom:14px;padding:4px 10px;border:3px double var(--red);color:var(--red);font:800 20px "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;transform:rotate(-10deg) scale(2.4);opacity:0;pointer-events:none}
+.sus.hit{border-color:var(--red);background:#1d1314}
+.sus.hit .lie{animation:lie .35s cubic-bezier(.5,0,.7,.4) forwards}
+@keyframes lie{to{opacity:1;transform:rotate(-10deg) scale(1)}}
+.sus.miss{animation:nope .4s}
+@keyframes nope{20%,60%{translate:-6px 0}40%,80%{translate:6px 0}}
+.qgrid.done .sus:not(.hit){opacity:.45;pointer-events:none}
+.qres{min-height:30px;margin-top:28px;font-size:17px;color:#d9d3c5;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.qres b{color:var(--lamp)}
+.qres a{color:var(--lamp);font:800 18px "Barlow Condensed",sans-serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid var(--lamp)}
+/* HOW */
+.how{background:#0b1113;border-top:1px solid #172024}
+.steps{list-style:none;margin:0;padding:22px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;position:relative}
+.steps .str{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible;opacity:0;transition:opacity .4s}
+.steps:has(li:last-of-type.on) .str{opacity:1;transition:opacity .6s 1.1s}
+.steps .str path{fill:none;stroke:#c8322b;stroke-width:2.2;filter:drop-shadow(0 3px 2px #000a)}
+.steps li{position:relative;background:#f1ead9;color:#2a1f10;padding:10px 10px 18px;transform:translateY(var(--y,0)) rotate(var(--r));align-self:start;box-shadow:0 16px 34px #000b;transition:transform .3s}
+.steps li:hover{transform:translateY(calc(var(--y,0) - 6px)) rotate(0)}
+.steps .pin{position:absolute;z-index:3;top:-8px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff6a5c,#a51d14);box-shadow:0 3px 4px #0007}
+.steps figure{position:relative;margin:0 0 14px;overflow:hidden;aspect-ratio:4/3;background:#111}
+.steps img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(.95);transition:transform .6s,filter .5s}
+@media(hover:hover){.steps img{filter:grayscale(1) contrast(1.12) brightness(.95)}.steps li:hover img{filter:grayscale(0) contrast(1.05) saturate(1)}}
+.steps{padding-bottom:90px}
+.steps li:hover img{transform:scale(1.07)}
+.steps .n{position:absolute;left:10px;bottom:6px;font:800 46px/1 "Barlow Condensed",sans-serif;color:#fff;text-shadow:0 2px 10px #000c}
+.steps h3{margin:0 6px 6px;font:800 25px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#1a1208}
+.steps p{margin:0 6px;color:#4a3a22;font-size:15px;line-height:1.5}
+.rv{opacity:0;translate:0 -90px;rotate:-10deg;scale:1.08;transition:opacity .7s,translate .9s cubic-bezier(.3,1.4,.5,1),rotate .9s cubic-bezier(.3,1.4,.5,1),scale .9s}
+.rv.on{opacity:1;translate:0 0;rotate:0deg;scale:1}
+.clue.rv.on{opacity:1}
+@media(max-width:900px){.qgrid,.clues{grid-template-columns:1fr}.clues{gap:18px}.steps{grid-template-columns:1fr 1fr;row-gap:40px;padding-bottom:0}.steps li{--y:0px!important}.steps .str{display:none}}
+@media(max-width:560px){.steps{padding-bottom:26px!important;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;margin:0 -20px;padding:22px 20px 26px;scrollbar-width:none}.steps li{flex:0 0 78%;scroll-snap-align:center}.quiz,.how{padding:64px 0}.clue{transform:rotate(-1deg)}}
+/* FAQ */
+.faq{padding:90px 0;background:#080d0f;border-top:1px solid #172024}
+.fqg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:60px;align-items:start}
+.faq h2{margin:0 0 16px;font-weight:800;font-size:clamp(38px,4.6vw,60px);text-transform:uppercase;line-height:1}
+.faq .hint{color:var(--mute);margin:0}
+.faq .hint a{color:var(--lamp)}
+.acc details{border-bottom:1px solid #22303a}
+.acc details:first-child{border-top:1px solid #22303a}
+.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 4px;font:700 22px/1.2 "Barlow Condensed",sans-serif;letter-spacing:.02em;transition:color .2s}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover{color:var(--lamp)}
+.acc summary i{position:relative;flex:none;width:28px;height:28px;border:1px solid #ede6d655;border-radius:50%;transition:transform .3s,border-color .2s}
+.acc summary i::before,.acc summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;margin:-1px 0 0 -6px;background:currentColor;transition:transform .3s}
+.acc summary i::after{transform:rotate(90deg)}
+.acc details[open] summary{color:var(--lamp)}
+.acc details[open] summary i{border-color:var(--lamp);transform:rotate(180deg)}
+.acc details[open] summary i::after{transform:rotate(0)}
+.acc p{margin:0;padding:0 44px 22px 4px;color:#c4beb1;font-size:16px;line-height:1.65;animation:fq .3s ease-out}
+.acc p a{color:var(--lamp)}
+@keyframes fq{from{opacity:0;transform:translateY(-6px)}}
+@media(max-width:900px){.fqg{grid-template-columns:1fr;gap:28px}.faq{padding:64px 0}.acc summary{font-size:20px}}
+/* SCROLL ANIM */
+.prog{position:fixed;left:0;top:0;height:5px;width:0;background:repeating-linear-gradient(-45deg,#c8322b 0 7px,#7d1611 7px 14px);background-size:20px 20px;box-shadow:0 1px 6px #c8322b88;z-index:50;pointer-events:none;animation:stripe 1s linear infinite}
+@keyframes stripe{to{background-position:20px 0}}
+.js .a-up,.js .a-left,.js .a-right,.js .a-drop,.js .a-pop{transition:filter .8s,opacity .8s cubic-bezier(.2,.7,.2,1),translate .8s cubic-bezier(.2,.7,.2,1),scale .8s cubic-bezier(.2,.7,.2,1),rotate .8s cubic-bezier(.2,.7,.2,1),clip-path 1s cubic-bezier(.7,0,.2,1)}
+.js .a-up:not(.in){opacity:0;translate:0 70px;filter:blur(6px)}
+.js .a-left:not(.in){opacity:0;translate:-180px 40px;rotate:-8deg}
+.js .a-right:not(.in){opacity:0;translate:180px 40px;rotate:10deg}
+.js .a-drop:not(.in){opacity:0;translate:0 -70px;rotate:-8deg}
+.js .a-pop:not(.in){opacity:0;scale:2.2;rotate:-30deg}
+.js .a-clip .cl{display:inline-block;clip-path:inset(-10% -2% -20% 0);transition:clip-path 1s cubic-bezier(.7,0,.2,1),translate 1s cubic-bezier(.2,.7,.2,1)}
+.js .a-clip:not(.in) .cl{clip-path:inset(-10% 100% -20% 0);translate:-60px 0}
+.js .k.a-up{position:relative}
+.quiz,.cases,.how,.faq{position:relative;overflow:hidden}
+.quiz>.wrap,.cases>.wrap,.how>.wrap,.faq>.wrap{position:relative;z-index:1}
+.hero .hc>div:first-child,.hero .stw{will-change:transform}
+@media (prefers-reduced-motion:reduce){.prog{display:none}.js .a-up,.js .a-left,.js .a-right,.js .a-drop,.js .a-clip,.js .a-pop{opacity:1!important;translate:none!important;rotate:none!important;scale:none!important;clip-path:none!important}}
+/* CASES */
+.cases{padding:80px 0 100px;background:radial-gradient(ellipse at 50% 0%,#18120a 0%,#080d0f 70%)}
+.cases h2{margin:0 0 8px;font-weight:800;font-size:clamp(40px,5vw,64px);text-transform:uppercase;line-height:1}
+.cases .hint{margin:0 0 44px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px}
+.fold{position:relative;display:block;text-decoration:none;color:#231a0e;padding-top:26px;transition:transform .3s}
+.fold::before{content:"";position:absolute;left:0;top:0;width:42%;height:34px;background:var(--kraft);border-radius:8px 8px 0 0;filter:brightness(.88)}
+.fold .body{position:relative;background:linear-gradient(160deg,#d3b27a,#b99257);padding:18px 18px 22px;border-radius:0 8px 8px 8px;box-shadow:0 18px 40px #000b, inset 0 0 40px #6b4a1f33;min-height:100%}
+.fold .ph{position:relative;margin:-2px -2px 16px;padding:8px 8px 26px;background:#f1ead9;box-shadow:0 6px 16px #0006;transform:rotate(var(--r));transition:transform .35s}
+.fold .ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;filter:sepia(.2) contrast(1.05)}
+.fold .ph::after{content:"";position:absolute;top:-12px;left:22px;width:14px;height:40px;border:3px solid #9aa0a3;border-radius:8px;border-bottom-color:transparent}
+.fold .no{font-weight:600;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#5d4520}
+.fold h3{margin:2px 0 8px;font-weight:800;font-size:31px;line-height:1;text-transform:uppercase}
+.fold p{margin:0 0 14px;font-size:16px;line-height:1.5;color:#3a2a14}
+.fold .tag{display:inline-block;font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:#5d4520}
+.fold .go{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed #5d452066;font:800 19px "Barlow Condensed",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#1a1208}
+.fold .go svg{width:20px;transition:transform .25s}
+.fold .seal{position:absolute;right:14px;top:58px;width:92px;transform:rotate(12deg);opacity:.9;z-index:2}
+a.fold:hover{transform:translateY(-8px)}
+a.fold:hover .ph{transform:rotate(0deg) translateY(-6px)}
+a.fold:hover .go svg{transform:translateX(5px)}
+.fold.locked{cursor:default}
+.fold.locked .ph img{filter:brightness(.6) saturate(.9) blur(1.5px)}
+.fold.locked .ph::before{content:"Tuyệt mật";position:absolute;z-index:1;left:8px;right:8px;top:42%;text-align:center;font:800 30px "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--red);border-block:3px double var(--red);transform:rotate(-7deg);background:#0009}
+.fold.locked .go{color:#5d4520}
+.grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.fold.big .body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px;align-items:stretch}
+.fold.big .ph{margin:0;display:flex;flex-direction:column}
+.fold.big .kb{flex:1;overflow:hidden;min-height:240px;position:relative}
+.fold.big .kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 50%;filter:contrast(1.06) saturate(1.1);animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-2%,-1%)}}
+a.fold.big:hover .kb img{filter:contrast(1.1) saturate(1.25) brightness(1.08)}
+.fold.big .info{display:flex;flex-direction:column}
+.fold.big .info .go{margin-top:auto}
+.fold.big .seal{top:16px;right:16px;width:76px}
+.fold .unit{display:block;margin:-2px 0 10px;font:700 16px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7a2a1c}
+.vu{list-style:none;margin:0 0 4px;padding:0;display:grid;gap:10px}
+.vu li{display:flex;align-items:center;gap:12px;padding:8px;background:#f1ead955;border:1px solid #5d452033;border-radius:4px}
+.vu img{width:58px;height:44px;object-fit:cover;flex:none;box-shadow:0 2px 6px #0004}
+.vu b{display:block;font:800 20px/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#1a1208}
+.vu em{font:600 14px "Barlow Condensed",sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#5d4520}
+.tape{overflow:hidden;background:#e9b65c;color:#141008;transform:rotate(-1.2deg);margin:-14px -10px 0;position:relative;z-index:2;box-shadow:0 6px 18px #0008}
+.tape div{display:inline-block;white-space:nowrap;padding:9px 0;font:800 17px "Barlow Condensed",sans-serif;letter-spacing:.2em;animation:tape 40s linear infinite}
+@keyframes tape{to{transform:translateX(-50%)}}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:4px 0 2px}
+.cd span{background:#1c1812;color:#f4f0e7;border-radius:4px;padding:8px 4px 6px;text-align:center;box-shadow:inset 0 -2px 0 #0006}
+.cd b{display:block;font:800 30px/1 "Barlow Condensed",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.cd small{display:block;margin-top:3px;font:600 11px "Barlow Condensed",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#c9bfa9}
+.cd b.tick{animation:tick .35s ease-out}
+.cd.unk b{color:#c22c25;animation:glitch 2.6s steps(1) infinite}
+.cd.unk span:nth-child(2) b{animation-delay:.4s}.cd.unk span:nth-child(3) b{animation-delay:.9s}.cd.unk span:nth-child(4) b{animation-delay:1.5s}
+@keyframes glitch{0%,100%{opacity:1;transform:none}8%{opacity:.2;transform:translateX(2px)}10%{opacity:1;transform:translateX(-2px)}12%{transform:none}}
+.cdn{margin:6px 0 0;font:600 13px "Barlow Condensed",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#5d4520}
+@keyframes tick{from{transform:translateY(-6px);opacity:.3}}
+.fold.locked .go a.inl{font:800 17px "Barlow Condensed",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#7a2a1c;text-decoration:none}
+.fold.locked .go a.inl:hover{text-decoration:underline}
+footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradient(#0b1113,#06090a)}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid #1c2629}
+.fbrand{display:flex;gap:18px;align-items:center}
+.fbrand img{width:96px;height:96px;transform:rotate(-8deg);flex:none}
+.fbrand b{display:block;font:800 30px/1 "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.fbrand span{display:block;margin-top:4px;font:600 16px "Barlow Condensed",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.fbrand p{margin:10px 0 0;color:#b9b3a6}
+.fcol{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.fcol h4{margin:0 0 4px;font:700 15px "Barlow Condensed",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--lamp)}
+.fcol a{color:var(--ink);text-decoration:none;border-bottom:1px solid #ede6d633}
+.fcol a:hover{border-color:var(--lamp)}
+.fcol .dim{color:#6f7976}
+.tt{width:18px;height:18px;flex:none}
+.fcol a.ttl{display:inline-flex;align-items:center;gap:8px}
+.topt{margin-left:auto;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid #ede6d644;color:var(--ink);text-decoration:none;font:600 15px "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;background:#080d0f66;backdrop-filter:blur(4px)}
+.topt:hover{border-color:var(--lamp);color:var(--lamp)}
+.topt em{font-style:normal}
+.fold a.inl{color:#7a2a1c;font-weight:500}
+@media(max-width:700px){.topt em{display:none}.topt{padding:9px}}
+.fcol button{font:inherit;color:var(--ink);background:none;border:1px solid #ede6d655;padding:7px 14px;cursor:pointer}
+.fcol button:hover{border-color:var(--lamp);color:var(--lamp)}
+.fbot{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;padding-top:22px;font-size:13.5px;color:#6f7976}
+.totop{color:#8b9592;text-decoration:none}.totop:hover{color:var(--lamp)}
+@media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr}.fbrand{grid-column:1/-1}.fbrand img{width:76px;height:76px}}
+@media(max-width:900px){.grid{grid-template-columns:1fr;max-width:520px}.fold.big .body{grid-template-columns:1fr;gap:16px}.fold.big .seal{width:64px;top:auto;bottom:70px}.fold.big .kb{aspect-ratio:4/3.4;flex:none;min-height:0}.fold.big h3{padding-right:0}}
+@media(max-width:700px){
+ .bg,.lit{background-position:68% center}
+ .vig{background:linear-gradient(rgba(8,13,15,.5),rgba(8,13,15,.75) 45%,#080d0f)!important}
+ .hc{grid-template-columns:1fr;gap:8px;padding-bottom:90px}
+ .stw{order:-1;justify-self:start;margin:0 0 6px}
+ .stamp{width:130px}
+ .flash{background:radial-gradient(circle at 25% 20%,#fff2 0,#0000 45%)}
+ .top span{display:none}
+ .sub{font-size:16.5px}
+ .btn{width:100%;justify-content:center}
+ .cta{gap:12px}
+ .note{border:0;padding:0;width:100%;text-align:center;font-size:14px}
+ .note span{display:block}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}canvas#rain{display:none}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<header class="hero">
+ <div class="bgw"><div class="bg"></div><div class="lit" id="lit"></div></div><div class="glow"></div><canvas id="rain" aria-hidden="true"></canvas><div class="vig"></div><div class="flash"></div>
+ <div class="wrap top"><img src="img/logo-sm.png" alt=""><b>Unravel</b><span>· Hồ sơ mật</span><a class="topt" href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener" aria-label="TikTok Hồ sơ mật"><svg class="tt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg><em>Theo dõi trên TikTok</em></a></div>
+ <div class="wrap hc">
+  <div>
+   <p class="k">Game phá án tiếng Việt</p>
+   <h1><span class="l1">Mở hồ sơ.</span><span class="l2">Lần ra sự thật.</span></h1>
+   <p class="sub">Mỗi hồ sơ là một vụ án khác nhau, với cách phá án riêng. Nhưng vụ nào cũng có người đang nói dối, và bạn là người phải vạch trần họ.</p>
+   <div class="cta"><a class="btn" href="https://mon-no-an-tinh.vercel.app/" target="_blank" rel="noopener">Vào phá án <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><p class="note"><span>Miễn phí, chơi ngay trên trình duyệt.</span> <span>Không cần tải app hay đăng ký.</span></p></div>
+  </div>
+  <div class="stw"><img class="stamp" src="img/logo.png" alt="Con dấu Hồ sơ mật"><img class="tool" src="img/stamp-tool.webp" alt="" aria-hidden="true"></div>
+ </div>
+ <a class="down" href="#tu-ho-so">Xem các vụ án<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
+</header>
+
+<section class="quiz" id="thu-nghe">
+ <div class="wrap">
+  <p class="k">Thử nghề 1 phút</p>
+  <h2>Ai đang nói dối?</h2>
+  <p class="hint">Đêm qua, két tiền của tiệm tạp hóa trong khu tập thể bị cạy lúc khoảng 21 giờ. Đối chiếu ba manh mối với lời khai để tìm ra người nói dối.</p>
+  <div class="clues">
+   <div class="clue rv" style="--r:-2deg"><span class="pin"></span><small>Manh mối 1 · Điện lực</small><b>Cả khu tập thể, kể cả chốt bảo vệ, mất điện từ 20:30 đến 22:00.</b></div>
+   <div class="clue rv" style="--r:1.5deg"><span class="pin"></span><small>Manh mối 2 · Camera đầu ngõ</small><b>21:10, một phụ nữ cầm ô đi ra phía phố, 10 phút sau quay lại.</b></div>
+   <div class="clue rv" style="--r:-1deg"><span class="pin"></span><small>Manh mối 3 · Thời tiết</small><b>Mưa lớn liên tục từ 20 giờ đến gần nửa đêm.</b></div>
+  </div>
+  <div class="qgrid">
+   <button class="sus rv" data-ok="0" data-msg="Lời chị Lan khớp với camera đầu ngõ. Thử người khác xem."><span class="who"><i>L</i><span><b>Chị Lan</b><small>Bán nước đầu ngõ</small></span></span><q>Tầm 9 giờ con tôi sốt, tôi cầm ô chạy ra hiệu thuốc ngoài phố rồi về ngay.</q><span class="lie">Nói dối</span></button>
+   <button class="sus rv" data-ok="1" data-msg="&lt;b&gt;Chuẩn.&lt;/b&gt; Cả khu mất điện từ 20:30 đến 22:00, tivi nào chiếu bóng đá cho anh Tùng xem?"><span class="who"><i>T</i><span><b>Anh Tùng</b><small>Bảo vệ khu tập thể</small></span></span><q>Cả tối tôi ngồi trong chốt xem bóng đá trên tivi, hết trận mới đi tuần một vòng.</q><span class="lie">Nói dối</span></button>
+   <button class="sus rv" data-ok="0" data-msg="Mất điện, trời mưa, ngồi ban công nghe mưa. Nghe vẫn hợp lý. Thử lại nhé."><span class="who"><i>B</i><span><b>Ông Bình</b><small>Hàng xóm tầng hai</small></span></span><q>Mất điện, trong nhà nóng quá nên tôi ra ban công ngồi nghe mưa đến khuya.</q><span class="lie">Nói dối</span></button>
+  </div>
+  <div class="qres" id="qres" aria-live="polite"></div>
+ </div>
+</section>
+
+<main class="cases" id="tu-ho-so">
+ <div class="wrap">
+  <h2>Các vụ án hấp dẫn</h2>
+  <p class="hint">Chọn một hồ sơ để bắt đầu. Đeo tai nghe để có trải nghiệm tốt nhất.</p>
+  <div class="grid">
+   <a class="fold big" href="https://mon-no-an-tinh.vercel.app/" target="_blank" rel="noopener">
+    <div class="body">
+     <div class="ph" style="--r:-2deg"><div class="kb"><img src="img/team4.jpg" alt="Điều tra viên mặc áo mưa soi đèn pin vào một ngõ nhỏ phố cổ Hà Nội đêm mưa" loading="lazy"></div></div>
+     <div class="info">
+      <span class="no">Hồ sơ số 01</span>
+      <h3>Đội Điều tra tổng hợp</h3>
+      <span class="unit">Công an phường Hoàn Kiếm</span>
+      <p>Ngày đầu nhận công tác, bạn được giao liền hai vụ ở khu phố cổ. Bạn tự đặt câu hỏi khi thẩm vấn, và kết luận của bạn sẽ dẫn tới những cái kết khác nhau.</p>
+      <ol class="vu">
+       <li><img src="img/case01.jpg" alt=""><span><b>Chiếc nhẫn đánh tráo</b><em>Vụ 1 · Nhập môn · 5 phút</em></span></li>
+       <li><img src="img/case02.jpg" alt=""><span><b>Món nợ ân tình</b><em>Vụ 2 · Án mạng · 20 phút</em></span></li>
+      </ol>
+      <span class="go">Bắt đầu điều tra <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+     </div>
+    </div>
+   </a>
+   <div class="fold locked" aria-label="Hồ sơ số 02, sắp ra mắt">
+    <div class="body">
+     <div class="ph" style="--r:2deg"><img src="img/case-next.jpg" alt="" loading="lazy"></div>
+     <span class="no">Hồ sơ số 02 · Sắp giải mật</span>
+     <h3>Sau ánh hào quang</h3>
+     <p>Một TikToker triệu follow. Một buổi livestream không bao giờ kết thúc. Và những bí mật không ai được phép biết...</p>
+     <div class="cd unk" id="cd" aria-label="Ngày giải mật chưa công bố">
+      <span><b data-u="d">??</b><small>Ngày</small></span><span><b data-u="h">??</b><small>Giờ</small></span><span><b data-u="m">??</b><small>Phút</small></span><span><b data-u="s">??</b><small>Giây</small></span>
+     </div>
+     <span class="go"><a class="inl" href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Theo dõi TikTok để không bỏ lỡ</a></span>
+    </div>
+   </div>
+  </div>
+ </div>
+</main>
+
+
+<section class="how">
+ <div class="wrap">
+  <p class="k">Cách phá án</p>
+  <h2>Từ hồ sơ đến chữ ký</h2>
+  <p class="hint">Cùng bắt đầu hành trình phá án và tìm ra lời giải với kịch bản nhập vai đa dạng.</p>
+  <ol class="steps"><svg class="str" aria-hidden="true"><path/></svg>
+   <li class="rv" style="--r:-1.5deg;--y:0px"><span class="pin"></span><figure><img src="img/step1.jpg" alt="" loading="lazy"><span class="n">01</span></figure><h3>Đọc hồ sơ</h3><p>Biên bản, ảnh hiện trường, lời khai ban đầu. Chi tiết nào cũng có thể là chìa khóa.</p></li>
+   <li class="rv" style="--r:1.2deg;--y:70px"><span class="pin"></span><figure><img src="img/step2.jpg" alt="" loading="lazy"><span class="n">02</span></figure><h3>Soi manh mối</h3><p>Một chiếc cúc áo, một vệt nước, một mốc giờ giấc lệch nhau. Đừng bỏ qua thứ gì.</p></li>
+   <li class="rv" style="--r:-1deg;--y:18px"><span class="pin"></span><figure><img src="img/step3.jpg" alt="" loading="lazy"><span class="n">03</span></figure><h3>Hỏi cung</h3><p>Đặt câu hỏi, đưa bằng chứng ra, rồi để ý xem ai bắt đầu lúng túng.</p></li>
+   <li class="rv" style="--r:1.6deg;--y:88px"><span class="pin"></span><figure><img src="img/step4.jpg" alt="" loading="lazy"><span class="n">04</span></figure><h3>Ký kết luận</h3><p>Chọn người, chỉ ra lý do, rồi ký tên. Kết luận sai thì phải chịu.</p></li>
+  </ol>
+ </div>
+</section>
+<section class="faq" id="hoi-dap">
+ <div class="wrap fqg">
+  <div><p class="k">Hỏi đáp</p><h2>Câu hỏi<br> thường gặp</h2><p class="hint">Còn thắc mắc hay phản hồi nào khác?<br><a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Liên hệ với Unravel</a> ngay nhé.</p></div>
+  <div class="acc">
+   <details open><summary>Unravel - Hồ sơ mật là gì?<i aria-hidden="true"></i></summary><p>Là dòng game phá án bằng tiếng Việt, chơi ngay trên trình duyệt. Mỗi hồ sơ là một vụ án hư cấu, có nhân vật, manh mối và cách chơi riêng.</p></details>
+   <details><summary>Có cần tải app hay tạo tài khoản không?<i aria-hidden="true"></i></summary><p>Không cần. Bạn chỉ cần mở link là chơi được, trên điện thoại hay máy tính đều được.</p></details>
+   <details><summary>Thẩm vấn nghi phạm như thế nào?<i aria-hidden="true"></i></summary><p>Bạn có thể bấm vào các câu hỏi gợi ý, hoặc tự gõ câu hỏi bằng lời của mình. Đưa đúng bằng chứng ra đúng lúc thì lời khai sẽ bắt đầu lung lay.</p></details>
+   <details><summary>Lỡ kết luận sai thì sao?<i aria-hidden="true"></i></summary><p>Thì bạn sai, và hồ sơ sẽ ghi lại như vậy. Mỗi vụ có nhiều kết thúc khác nhau, và bạn luôn có thể điều tra lại từ đầu để khám phá.</p></details>
+   <details><summary>Khi nào có vụ án mới?<i aria-hidden="true"></i></summary><p>Các hồ sơ mới sẽ được giải mật dần. Theo dõi <a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Tiktok Unravel - Hồ sơ mật</a> để biết sớm nhất.</p></details>
+  </div>
+ </div>
+</section>
+<div class="tape" aria-hidden="true"><div>HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ HỒ SƠ MẬT ✦ KHÔNG PHẬN SỰ MIỄN VÀO ✦ </div></div>
+<footer>
+ <div class="wrap fgrid">
+  <div class="fbrand">
+   <img src="img/logo.png" alt="">
+   <div><b>Unravel</b><span>Hồ sơ mật</span><p>Game suy luận phá án online</p></div>
+  </div>
+  <div class="fcol"><h4>Các vụ án</h4>
+   <a href="https://mon-no-an-tinh.vercel.app/" target="_blank" rel="noopener">01 · Đội Điều tra tổng hợp</a>
+   <span class="dim">02 · Sau ánh hào quang (sắp ra mắt)</span>
+  </div>
+  <div class="fcol"><h4>Theo dõi</h4>
+   <a class="ttl" href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener"><svg class="tt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>@ho_so_mat_13</a>
+   <button type="button" id="shareBtn">Chia sẻ với bạn bè</button>
+  </div>
+ </div>
+ <div class="wrap fbot"><span>© 2026 Unravel - Hồ sơ mật · Các vụ án, nhân vật và tình tiết đều là hư cấu.</span><a href="#" class="totop">Lên đầu trang ↑</a></div>
+</footer>
+
+<script>
+(()=>{const c=document.getElementById('rain');if(!c||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const x=c.getContext('2d');let w,h,d=[];
+const fit=()=>{w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;d=Array.from({length:Math.round(w*h/9000)},()=>({x:Math.random()*w,y:Math.random()*h,l:10+Math.random()*22,v:9+Math.random()*9}))};
+fit();addEventListener('resize',fit);
+(function f(){x.clearRect(0,0,w,h);x.strokeStyle='rgba(200,215,225,.35)';x.lineWidth=1;x.beginPath();for(const p of d){x.moveTo(p.x,p.y);x.lineTo(p.x-p.l*.18,p.y+p.l);p.y+=p.v;p.x-=p.v*.18;if(p.y>h){p.y=-p.l;p.x=Math.random()*w*1.1}}x.stroke();requestAnimationFrame(f)})();})();
+(()=>{const L=document.getElementById('lit'),H=document.querySelector('.hero'),S=document.querySelector('.stamp');if(!L)return;
+let tx=.3,ty=.4,cx=.3,cy=.4,last=0;const red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+H.addEventListener('pointermove',e=>{const r=L.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;last=performance.now();
+ if(S)S.style.translate=((e.clientX/innerWidth-.5)*-18)+'px '+((e.clientY/innerHeight-.5)*-12)+'px'});
+(function f(t){if(!red&&t-last>2500){tx=.5+.32*Math.sin(t/2300);ty=.45+.22*Math.sin(t/1500)}
+cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;L.style.setProperty('--mx',cx*100+'%');L.style.setProperty('--my',cy*100+'%');requestAnimationFrame(f)})(0);})();
+(()=>{const b=document.getElementById('shareBtn');if(!b)return;b.onclick=async()=>{const u=location.href.split('#')[0];try{if(navigator.share){await navigator.share({title:'Unravel - Hồ sơ mật',text:'Mở hồ sơ. Lần ra sự thật.',url:u});return}await navigator.clipboard.writeText(u);b.textContent='Đã copy link ✓'}catch(e){}}})();
+(()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const H=document.querySelector('.hero');
+setTimeout(()=>{H.classList.add('hit');navigator.vibrate&&navigator.vibrate(40);
+ try{const A=new (window.AudioContext||window.webkitAudioContext)();if(A.state==='running'){const o=A.createOscillator(),g=A.createGain();o.type='sine';o.frequency.setValueAtTime(140,A.currentTime);o.frequency.exponentialRampToValueAtTime(40,A.currentTime+.25);g.gain.setValueAtTime(.6,A.currentTime);g.gain.exponentialRampToValueAtTime(.001,A.currentTime+.3);o.connect(g).connect(A.destination);o.start();o.stop(A.currentTime+.32)}}catch(e){}
+ setTimeout(()=>H.classList.remove('hit'),450)},1700)})();
+(()=>{const g=document.querySelector('.qgrid'),r=document.getElementById('qres');if(!g)return;
+g.querySelectorAll('.sus').forEach(b=>b.addEventListener('click',()=>{if(g.classList.contains('done'))return;
+ if(b.dataset.ok==='1'){b.classList.add('hit');g.classList.add('done');navigator.vibrate&&navigator.vibrate(30);
+  r.innerHTML='<span>'+b.dataset.msg+' Bạn có khiếu đấy.</span><a href="https://mon-no-an-tinh.vercel.app/" target="_blank" rel="noopener">Thử một vụ thật →</a>'}
+ else{b.classList.remove('miss');void b.offsetWidth;b.classList.add('miss');r.innerHTML='<span>'+b.dataset.msg+'</span>'}}))})();
+(()=>{const els=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){els.forEach(e=>e.classList.add('on'));return}
+const io=new IntersectionObserver(es=>es.forEach(e=>{const i=[...e.target.parentNode.children].indexOf(e.target);e.target.style.transitionDelay=e.isIntersecting?(i*.15)+'s':'0s';e.target.classList.toggle('on',e.isIntersecting)}),{threshold:.12});els.forEach(e=>io.observe(e))})();
+(()=>{const ol=document.querySelector('.steps');if(!ol)return;const svg=ol.querySelector('.str'),path=svg.querySelector('path');
+const draw=()=>{if(getComputedStyle(svg).display==='none')return;const pts=[...ol.querySelectorAll('li')].map(li=>[li.offsetLeft+li.offsetWidth/2,li.offsetTop+(parseFloat(getComputedStyle(li).getPropertyValue('--y'))||0)]);
+ if(pts.length<2)return;let d=`M${pts[0][0]-60},${pts[0][1]+14} Q${pts[0][0]-30},${pts[0][1]+10} ${pts[0][0]},${pts[0][1]}`;
+ for(let i=1;i<pts.length;i++){const[a,b]=pts[i-1],[c,e]=pts[i];d+=` Q${(a+c)/2},${Math.max(b,e)+34} ${c},${e}`}
+ const l=pts[pts.length-1];d+=` Q${l[0]+30},${l[1]+12} ${l[0]+60},${l[1]+20}`;path.setAttribute('d',d)};
+draw();addEventListener('resize',draw);addEventListener('load',draw);setTimeout(draw,800);setTimeout(draw,1600);ol.addEventListener('transitionend',draw)})();
+(()=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+const add=(sel,c,stag)=>document.querySelectorAll(sel).forEach((e,i)=>{e.classList.add(c);if(stag)e.style.transitionDelay=(i*stag)+'s'});
+add('main .k,section .k','a-up');document.querySelectorAll('main h2,section h2').forEach(h=>{h.innerHTML='<span class="cl">'+h.innerHTML+'</span>';h.classList.add('a-clip')});add('main .hint,section .hint,.faq .hint','a-up');
+add('.fold.big','a-left');add('.fold.locked','a-right');add('.vu li','a-up',.12);
+add('.acc details','a-up',.07);add('.fbrand img','a-pop');add('.fcol','a-up',.1);
+document.querySelectorAll('main .hint,section .hint').forEach(e=>e.style.transitionDelay='.15s');
+const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.a-up,.a-left,.a-right,.a-drop,.a-clip,.a-pop').forEach(e=>io.observe(e));
+const P=document.getElementById('prog'),hc=document.querySelector('.hero .hc>div:first-child'),st=document.querySelector('.hero .stw'),bg=document.querySelector('.bgw');let tk=0;
+const f=()=>{tk=0;const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;P.style.width=(h>0?y/h*100:0)+'%';
+ if(y<innerHeight*1.2){const k=y/innerHeight;hc.style.transform=`translateY(${y*.35}px)`;hc.style.opacity=1-k*1.1;st.style.transform=`translateY(${y*.18}px) rotate(${k*12}deg)`;bg.style.translate=`0 ${y*.25}px`}};
+addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(f)}},{passive:true});f()})();
+(()=>{const c=document.getElementById('cd');if(!c||!c.dataset.at)return;const T=new Date(c.dataset.at).getTime(),el={};c.querySelectorAll('b').forEach(b=>el[b.dataset.u]=b);
+const set=(k,v)=>{v=String(v).padStart(2,'0');if(el[k].textContent!==v){el[k].textContent=v;el[k].classList.remove('tick');void el[k].offsetWidth;el[k].classList.add('tick')}};
+const f=()=>{let t=Math.max(0,Math.floor((T-Date.now())/1000));set('d',Math.floor(t/86400));set('h',Math.floor(t/3600)%24);set('m',Math.floor(t/60)%60);set('s',t%60)};f();setInterval(f,1000)})();
+</script>
+</body>
+</html>
