@@ -260,15 +260,15 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
 .topt em{font-style:normal}
 .fold a.inl{color:#7a2a1c;font-weight:500}
 @media(max-width:700px){.topt em{display:none}.topt{padding:9px}}
-.fcol button{font:inherit;color:var(--ink);background:none;border:1px solid #ede6d655;padding:7px 14px;cursor:pointer}
-.fcol button:hover{border-color:var(--lamp);color:var(--lamp)}
+#shareBtn{font:inherit;color:var(--ink);background:none;border:1px solid #ede6d655;padding:7px 14px;cursor:pointer}
+#shareBtn:hover{border-color:var(--lamp);color:var(--lamp)}
 .fbot{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;padding-top:22px;font-size:13.5px;color:#6f7976}
 .totop{color:#8b9592;text-decoration:none}.totop:hover{color:var(--lamp)}
 @media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr}.fbrand{grid-column:1/-1}.fbrand img{width:76px;height:76px}}
 @media(max-width:600px){
  footer{padding:44px 0 24px}
  .fgrid{grid-template-columns:1fr;gap:0;padding-bottom:22px}
- .fbrand{justify-content:center;text-align:left;gap:14px;padding-bottom:26px}
+ .fbrand{justify-content:flex-start;text-align:left;gap:14px;padding-bottom:26px}
  .fbrand img{width:68px;height:68px}
  .fbrand b{font-size:26px}
  .fcol{gap:0;padding:18px 0;border-top:1px solid #1c2629;align-items:stretch}
@@ -278,8 +278,8 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
  .fcol a.ttl{display:flex;justify-content:flex-start}
  .fcol a.ttl::after{margin-left:auto}
  .fcol .dim{border-bottom:0}
- .fcol button{margin-top:14px;padding:12px;width:100%;text-align:center}
- .fbot{flex-direction:column;align-items:center;text-align:center;gap:10px;padding-top:18px}
+ #shareBtn{margin-top:14px;padding:12px;width:100%;text-align:center}
+ .fbot{flex-direction:column;align-items:flex-start;text-align:left;gap:10px;padding-top:18px}
 }
 @media(max-width:900px){.grid{grid-template-columns:1fr;max-width:520px}.fold.big .body{grid-template-columns:1fr;gap:16px}.fold.big .seal{width:64px;top:auto;bottom:70px}.fold.big .kb{aspect-ratio:4/3.4;flex:none;min-height:0}.fold.big h3{padding-right:0}}
 @media(max-width:700px){
@@ -308,6 +308,9 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
  .note span{display:block}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}canvas#rain{display:none}}
+.soc{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}.soc .tt{width:20px;height:20px}.soc a{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid #ede6d633;color:var(--ink);text-decoration:none;font-size:14px}.soc a:hover{border-color:var(--lamp);color:var(--lamp)}
+#shareBtn{margin-top:16px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px}.tags i{font:600 13px/1 "Barlow Condensed",sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#6b5a3f;padding:5px 9px 4px;border:1px solid #6b5a3f40;border-radius:999px}
 </style>
 <!-- Vercel Web Analytics: bật trong Vercel > Project > Analytics -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
@@ -360,6 +363,7 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
       <span class="no">Hồ sơ số 01</span>
       <h3>Đội Điều tra tổng hợp</h3>
       <span class="unit">Công an phường Hoàn Kiếm</span>
+      <span class="tags"><i>Hà Nội</i><i>Điều tra viên</i></span>
       <p>Ngày đầu nhận công tác, bạn được giao liền hai vụ ở khu Phố Cổ. Bạn tự đặt câu hỏi khi thẩm vấn, và kết luận của bạn sẽ dẫn tới những cái kết khác nhau.</p>
       <ol class="vu">
        <li><img src="img/case01.jpg" alt=""><span><b>Chiếc nhẫn đánh tráo</b><em>Vụ 1 - Trộm cắp</em></span></li>
@@ -401,13 +405,13 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
 </section>
 <section class="faq" id="hoi-dap">
  <div class="wrap fqg">
-  <div><p class="k">Hỏi đáp</p><h2>Câu hỏi<br> thường gặp</h2><p class="hint">Còn thắc mắc hay phản hồi nào khác?<br><a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Liên hệ với Unravel</a> ngay nhé.</p></div>
+  <div><p class="k">Hỏi đáp</p><h2>Câu hỏi<br> thường gặp</h2><p class="hint">Còn thắc mắc hay phản hồi nào khác?<br><a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Liên hệ với Unravel</a> ngay nhé.</p><p class="soc"><a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener" aria-label="TikTok"><svg class="tt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg></a><a href="https://www.instagram.com/unravel.hosomat/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="tt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg></a><a href="https://www.threads.com/@unravel.hosomat" target="_blank" rel="noopener" aria-label="Threads"><svg class="tt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M16.5 11.2c-.4-2.6-2.1-3.9-4.4-3.9-2.6 0-4.4 1.9-4.4 4.7 0 3 1.9 5 4.9 5 2.3 0 4-1.3 4-3.2 0-1.8-1.5-2.8-3.5-2.8-1.6 0-2.6.8-2.6 1.9 0 1 .9 1.7 2 1.7 2.1 0 3.4-1.9 3.4-5.1"/><path d="M19.5 7.5C18.1 4.6 15.4 3 12 3 6.8 3 4 6.7 4 12s2.8 9 8 9c3.4 0 6.1-1.6 7.3-4.6"/></svg></a></p></div>
   <div class="acc">
    <details open><summary>Unravel - Hồ sơ mật là gì?<i aria-hidden="true"></i></summary><p>Là dòng game phá án bằng tiếng Việt, chơi ngay trên trình duyệt. Mỗi hồ sơ là một vụ án hư cấu, có nhân vật, manh mối và cách chơi riêng.</p></details>
    <details><summary>Có cần tải app hay tạo tài khoản không?<i aria-hidden="true"></i></summary><p>Không cần. Bạn chỉ cần mở link là chơi được ngay. Game chạy được trên cả điện thoại lẫn máy tính, nhưng chơi trên trình duyệt máy tính sẽ cho giao diện ổn định và dễ nhìn nhất.</p></details>
    <details><summary>Thẩm vấn nghi phạm như thế nào?<i aria-hidden="true"></i></summary><p>Bạn có thể bấm vào các câu hỏi gợi ý, hoặc tự gõ câu hỏi bằng lời của mình. Đưa đúng bằng chứng ra đúng lúc thì lời khai sẽ bắt đầu lung lay.</p></details>
    <details><summary>Lỡ kết luận sai thì sao?<i aria-hidden="true"></i></summary><p>Thì bạn sai, và hồ sơ sẽ ghi lại như vậy. Mỗi vụ có nhiều kết thúc khác nhau, và bạn luôn có thể điều tra lại từ đầu để khám phá.</p></details>
-   <details><summary>Khi nào có vụ án mới?<i aria-hidden="true"></i></summary><p>Unravel sẽ lần lượt ra mắt thêm các vụ án mới. Theo dõi kênh <a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">Tiktok Unravel - Hồ sơ mật</a> để nhận thông báo sớm nhất nhé.</p></details>
+   <details><summary>Khi nào có vụ án mới?<i aria-hidden="true"></i></summary><p>Unravel sẽ lần lượt ra mắt thêm các vụ án mới. Theo dõi Unravel - Hồ sơ mật trên <a href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener">TikTok</a>, <a href="https://www.instagram.com/unravel.hosomat/" target="_blank" rel="noopener">Instagram</a> hoặc <a href="https://www.threads.com/@unravel.hosomat" target="_blank" rel="noopener">Threads</a> để nhận thông báo sớm nhất nhé.</p></details>
   </div>
  </div>
 </section>
@@ -416,15 +420,16 @@ footer{padding:64px 0 28px;color:#8b9592;font-size:15px;background:linear-gradie
  <div class="wrap fgrid">
   <div class="fbrand">
    <img src="img/logo.png" alt="">
-   <div><b>Unravel</b><span>Hồ sơ mật</span><p>Game suy luận phá án online</p></div>
+   <div><b>Unravel</b><span>Hồ sơ mật</span><p>Game suy luận phá án online</p><button type="button" id="shareBtn">Chia sẻ với bạn bè</button></div>
   </div>
   <div class="fcol"><h4>Các vụ án</h4>
    <a href="https://mon-no-an-tinh.vercel.app/" target="_blank" rel="noopener">01 · Đội Điều tra tổng hợp</a>
    <span class="dim">02 · Sau ánh hào quang (sắp ra mắt)</span>
   </div>
   <div class="fcol"><h4>Theo dõi</h4>
-   <a class="ttl" href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener"><svg class="tt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>Unravel - Hồ sơ mật</a>
-   <button type="button" id="shareBtn">Chia sẻ với bạn bè</button>
+   <a class="ttl" href="https://www.tiktok.com/@ho_so_mat_13" target="_blank" rel="noopener"><svg class="tt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.8A4.3 4.3 0 0 1 15.5 3h-3.2v12.4a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.6a5.8 5.8 0 1 0 5 5.8V9.1a7.4 7.4 0 0 0 4.3 1.4V7.3a4.3 4.3 0 0 1-3.2-1.5z"/></svg>TikTok</a>
+   <a class="ttl" href="https://www.instagram.com/unravel.hosomat/" target="_blank" rel="noopener"><svg class="tt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg>Instagram</a>
+   <a class="ttl" href="https://www.threads.com/@unravel.hosomat" target="_blank" rel="noopener"><svg class="tt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M16.5 11.2c-.4-2.6-2.1-3.9-4.4-3.9-2.6 0-4.4 1.9-4.4 4.7 0 3 1.9 5 4.9 5 2.3 0 4-1.3 4-3.2 0-1.8-1.5-2.8-3.5-2.8-1.6 0-2.6.8-2.6 1.9 0 1 .9 1.7 2 1.7 2.1 0 3.4-1.9 3.4-5.1"/><path d="M19.5 7.5C18.1 4.6 15.4 3 12 3 6.8 3 4 6.7 4 12s2.8 9 8 9c3.4 0 6.1-1.6 7.3-4.6"/></svg>Threads</a>
   </div>
  </div>
  <div class="wrap fbot"><span>© 2026 Unravel - Hồ sơ mật · Các vụ án, nhân vật và tình tiết đều là hư cấu.</span><a href="#" class="totop">Lên đầu trang ↑</a></div>
@@ -479,7 +484,7 @@ const f=()=>{let t=Math.max(0,Math.floor((T-Date.now())/1000));set('d',Math.floo
 window.track=(n,p={})=>{try{window.va&&va('event',{name:n,data:p})}catch(e){}try{window.gtag&&gtag('event',n,p)}catch(e){}try{window.ttq&&ttq.track(n,p)}catch(e){}try{window.fbq&&fbq('trackCustom',n,p)}catch(e){}};
 document.addEventListener('click',e=>{const a=e.target.closest('a,button');if(!a)return;const h=a.getAttribute('href')||'';
  if(h.includes('mon-no-an-tinh'))track('play_click',{from:a.closest('.hero')?'hero':a.closest('.cases')?'case_card':a.closest('.quiz')?'quiz':a.closest('footer')?'footer':'other'});
- else if(h.includes('tiktok.com'))track('tiktok_click',{from:a.closest('header')?'header':a.closest('.cases')?'case_card':a.closest('.faq')?'faq':'footer'});
+ else if(h.includes('instagram.com')||h.includes('threads.'))track('social_click',{net:h.includes('instagram')?'instagram':'threads',from:a.closest('.faq')?'faq':'footer'});else if(h.includes('tiktok.com'))track('tiktok_click',{from:a.closest('header')?'header':a.closest('.cases')?'case_card':a.closest('.faq')?'faq':'footer'});
  else if(a.id==='shareBtn')track('share_click');
  else if(a.classList.contains('sus'))track('quiz_answer',{correct:a.dataset.ok==='1'});});
 document.querySelectorAll('.acc details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)track('faq_open',{q:d.querySelector('summary').textContent.trim()})}));
